@@ -834,21 +834,89 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    nav { padding: 16px 20px; }
+    /* Nav */
+    nav { padding: 14px 16px; }
     .nav-links { display: none; }
-    .features { padding: 80px 20px; }
-    .features-grid { grid-template-columns: 1fr; }
-    .how { padding: 80px 20px; }
-    .how-inner { grid-template-columns: 1fr; gap: 48px; }
-    .pricing { padding: 80px 20px; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .pricing-card.featured { transform: none; }
-    .cms-stats { grid-template-columns: 1fr; }
-    .cms-banner { padding: 32px 20px; margin-bottom: 80px; }
-    #demo { padding: 80px 20px; }
-    footer { padding: 32px 20px; flex-direction: column; text-align: center; }
-    .hero-stats { gap: 24px; }
+
+    /* Hero */
+    .hero { padding: 100px 16px 60px; }
+    .hero h1 { font-size: 36px; letter-spacing: -1px; }
+    .hero-sub { font-size: 15px; }
+    .hero-ctas { flex-direction: column; align-items: center; }
+    .hero-ctas a { width: 100%; text-align: center; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .hero-stat { min-width: 120px; }
     .hero-stat-divider { display: none; }
+    .hero-stat-num { font-size: 28px; }
+
+    /* Benefits section */
+    #benefits { padding: 60px 16px; }
+    .benefits-grid-2, .benefits-grid-3 {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+    }
+
+    /* CMS banner */
+    .cms-banner { padding: 28px 16px; margin: 0 16px 60px; }
+    .cms-banner-title { font-size: 26px; }
+    .cms-stats {
+      grid-template-columns: 1fr !important;
+      gap: 12px;
+    }
+    .cms-stat-num { font-size: 32px; }
+
+    /* Features */
+    .features { padding: 60px 16px; }
+    .features-grid {
+      grid-template-columns: 1fr !important;
+      gap: 12px;
+    }
+    .feature-card { padding: 24px; }
+
+    /* How it works */
+    .how { padding: 60px 16px; }
+    .how-inner {
+      grid-template-columns: 1fr !important;
+      gap: 40px;
+    }
+    .phone-mockup { max-width: 340px; margin: 0 auto; }
+
+    /* Quote */
+    .quote-section { padding: 60px 16px; }
+    .quote-text { font-size: 20px; }
+
+    /* Pricing */
+    .pricing { padding: 60px 16px; }
+    .pricing-grid {
+      grid-template-columns: 1fr !important;
+      gap: 16px;
+    }
+    .pricing-card.featured { transform: none; }
+    .pricing-card { padding: 28px 24px; }
+
+    /* CTA */
+    .cta-section { padding: 60px 16px; }
+    .cta-section h2 { font-size: 32px; }
+
+    /* Demo form */
+    #demo { padding: 60px 16px; }
+    .form-name-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Footer */
+    footer { padding: 32px 16px; flex-direction: column; text-align: center; gap: 20px; }
+    .footer-links { justify-content: center; flex-wrap: wrap; gap: 16px; }
+
+    /* General overflow fix */
+    body { overflow-x: hidden; }
+    section { overflow-x: hidden; }
+  }
+
+  /* Extra small phones */
+  @media (max-width: 390px) {
+    .hero h1 { font-size: 30px; }
+    .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; }
   }
 </style>
 </head>
@@ -922,7 +990,7 @@
   </div>
 
   <!-- BENEFIT CARDS - 2 column large cards -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+  <div class="benefits-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
 
     <!-- CALL VOLUME -->
     <div style="background:linear-gradient(135deg,rgba(26,108,246,0.08),rgba(26,108,246,0.02));border:1px solid rgba(26,108,246,0.2);border-radius:20px;padding:40px;position:relative;overflow:hidden;" class="fade-up">
@@ -974,7 +1042,7 @@
   </div>
 
   <!-- SECOND ROW -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
+  <div class="benefits-grid-3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
 
     <!-- SURGERY CANCELLATIONS -->
     <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px;" class="fade-up">
@@ -1262,7 +1330,7 @@
   </div>
 
   <form class="fade-up" onsubmit="submitDemo(event)">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div class="form-name-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
       <div class="form-group">
         <label class="form-label">First name</label>
         <input class="form-input" type="text" placeholder="John" required/>
