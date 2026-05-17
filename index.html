@@ -3,1471 +3,178 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Snapback Health — AI-Powered Patient Recovery</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<title>Terms of Service — Snapback Health</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --navy: #0a1628;
-    --navy-mid: #1a3a5c;
-    --blue: #1a6cf6;
-    --green: #0f9b6b;
-    --amber: #e08c00;
-    --white: #ffffff;
-    --off-white: #f5f7fb;
-    --text-soft: rgba(255,255,255,0.65);
-    --text-softer: rgba(255,255,255,0.4);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--navy);
-    color: var(--white);
-    overflow-x: hidden;
-  }
-
-  /* ── NOISE TEXTURE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(10,22,40,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-  }
-
-  .nav-logo-mark {
-    width: 38px; height: 38px;
-    background: linear-gradient(135deg, var(--blue), var(--green));
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: -0.5px;
-  }
-
-  .nav-logo-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: white;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 36px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text-soft);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: white; }
-
-  .nav-cta {
-    background: var(--blue);
-    color: white !important;
-    padding: 10px 22px;
-    border-radius: 8px;
-    font-weight: 600 !important;
-    transition: all 0.2s !important;
-  }
-
-  .nav-cta:hover {
-    background: #2a7cf8 !important;
-    transform: translateY(-1px);
-  }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 120px 24px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-glow {
-    position: absolute;
-    width: 800px; height: 800px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(26,108,246,0.12) 0%, transparent 70%);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
-  .hero-glow-2 {
-    position: absolute;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(15,155,107,0.08) 0%, transparent 70%);
-    top: 30%; right: 10%;
-    pointer-events: none;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(26,108,246,0.12);
-    border: 1px solid rgba(26,108,246,0.3);
-    border-radius: 50px;
-    padding: 8px 18px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #7ab8ff;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    margin-bottom: 32px;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .hero-badge-dot {
-    width: 6px; height: 6px;
-    background: var(--blue);
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
-
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(44px, 7vw, 88px);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -2px;
-    margin-bottom: 24px;
-    animation: fadeUp 0.6s ease 0.1s both;
-    max-width: 900px;
-  }
-
-  .hero h1 em {
-    font-style: normal;
-    background: linear-gradient(135deg, var(--blue), var(--green));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-sub {
-    font-size: clamp(16px, 2vw, 20px);
-    color: var(--text-soft);
-    max-width: 580px;
-    line-height: 1.7;
-    margin-bottom: 48px;
-    animation: fadeUp 0.6s ease 0.2s both;
-  }
-
-  .hero-ctas {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-    animation: fadeUp 0.6s ease 0.3s both;
-    margin-bottom: 72px;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--blue), #0a5bd4);
-    color: white;
-    padding: 16px 36px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
-    box-shadow: 0 8px 32px rgba(26,108,246,0.3);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(26,108,246,0.4);
-  }
-
-  .btn-secondary {
-    background: rgba(255,255,255,0.06);
-    color: white;
-    padding: 16px 36px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.12);
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
-  }
-
-  .btn-secondary:hover {
-    background: rgba(255,255,255,0.1);
-    transform: translateY(-2px);
-  }
-
-  /* ── HERO STATS ── */
-  .hero-stats {
-    display: flex;
-    gap: 48px;
-    justify-content: center;
-    flex-wrap: wrap;
-    animation: fadeUp 0.6s ease 0.4s both;
-  }
-
-  .hero-stat {
-    text-align: center;
-  }
-
-  .hero-stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    font-weight: 700;
-    background: linear-gradient(135deg, white, rgba(255,255,255,0.7));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-stat-label {
-    font-size: 12px;
-    color: var(--text-softer);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    margin-top: 4px;
-  }
-
-  .hero-stat-divider {
-    width: 1px;
-    background: rgba(255,255,255,0.1);
-    align-self: stretch;
-  }
-
-  /* ── SECTION ── */
-  section {
-    position: relative;
-    z-index: 1;
-  }
-
-  .section-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--blue);
-    text-transform: uppercase;
-    letter-spacing: .12em;
-    margin-bottom: 14px;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 4vw, 52px);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -1px;
-    margin-bottom: 16px;
-  }
-
-  .section-sub {
-    font-size: 17px;
-    color: var(--text-soft);
-    line-height: 1.7;
-    max-width: 560px;
-  }
-
-  /* ── CMS BANNER ── */
-  .cms-banner {
-    background: linear-gradient(135deg, rgba(26,108,246,0.1), rgba(15,155,107,0.1));
-    border: 1px solid rgba(26,108,246,0.2);
-    border-radius: 20px;
-    padding: 48px;
-    margin: 0 auto 120px;
-    max-width: 1100px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cms-banner::before {
-    content: '';
-    position: absolute;
-    top: -100px; left: 50%;
-    transform: translateX(-50%);
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(26,108,246,0.1), transparent 70%);
-    pointer-events: none;
-  }
-
-  .cms-banner-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 700;
-    margin-bottom: 16px;
-    letter-spacing: -1px;
-  }
-
-  .cms-banner-sub {
-    font-size: 17px;
-    color: var(--text-soft);
-    max-width: 640px;
-    margin: 0 auto 32px;
-    line-height: 1.7;
-  }
-
-  .cms-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 40px;
-    text-align: left;
-  }
-
-  .cms-stat-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 14px;
-    padding: 24px;
-  }
-
-  .cms-stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 42px;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-
-  .cms-stat-label {
-    font-size: 13px;
-    color: var(--text-soft);
-    line-height: 1.6;
-  }
-
-  /* ── FEATURES ── */
-  .features {
-    padding: 120px 48px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .features-header {
-    text-align: center;
-    margin-bottom: 72px;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .feature-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 16px;
-    padding: 32px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(26,108,246,0.05), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .feature-card:hover { border-color: rgba(26,108,246,0.3); transform: translateY(-4px); }
-  .feature-card:hover::before { opacity: 1; }
-
-  .feature-icon {
-    width: 48px; height: 48px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
-
-  .feature-title {
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: white;
-  }
-
-  .feature-desc {
-    font-size: 14px;
-    color: var(--text-soft);
-    line-height: 1.7;
-  }
-
-  /* ── HOW IT WORKS ── */
-  .how {
-    padding: 120px 48px;
-    background: rgba(255,255,255,0.02);
-    border-top: 1px solid rgba(255,255,255,0.05);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-
-  .how-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .how-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .how-step {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-  }
-
-  .how-step-num {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--blue), var(--green));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .how-step-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-
-  .how-step-desc {
-    font-size: 14px;
-    color: var(--text-soft);
-    line-height: 1.7;
-  }
-
-  /* ── PHONE MOCKUP ── */
-  .phone-mockup {
-    background: linear-gradient(160deg, #0f2744, #1a3a5c, #0a3d2e);
-    border-radius: 40px;
-    padding: 32px 24px;
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 40px 120px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
-    position: relative;
-  }
-
-  .phone-notch {
-    width: 80px; height: 6px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 3px;
-    margin: 0 auto 24px;
-  }
-
-  .phone-screen-label {
-    font-size: 9px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.4);
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    margin-bottom: 4px;
-  }
-
-  .phone-screen-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 4px;
-  }
-
-  .phone-screen-sub {
-    font-size: 12px;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 20px;
-    line-height: 1.5;
-  }
-
-  .phone-score-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 50px;
-    padding: 8px 16px;
-    margin-bottom: 16px;
-  }
-
-  .phone-stats {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-
-  .phone-stat {
-    background: rgba(255,255,255,0.06);
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-  }
-
-  .phone-stat-val { font-size: 18px; font-weight: 700; color: white; }
-  .phone-stat-lab { font-size: 9px; color: rgba(255,255,255,0.4); margin-top: 2px; text-transform: uppercase; }
-
-  .phone-tip {
-    background: rgba(26,108,246,0.12);
-    border: 1px solid rgba(26,108,246,0.25);
-    border-radius: 10px;
-    padding: 12px;
-  }
-
-  .phone-tip-label {
-    font-size: 9px;
-    font-weight: 600;
-    color: rgba(135,185,255,0.7);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    margin-bottom: 3px;
-  }
-
-  .phone-tip-text {
-    font-size: 11px;
-    color: rgba(255,255,255,0.75);
-    line-height: 1.5;
-  }
-
-  /* ── PRICING ── */
-  .pricing {
-    padding: 120px 48px;
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 56px;
-    text-align: left;
-  }
-
-  .pricing-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 20px;
-    padding: 36px;
-    transition: all 0.3s;
-    position: relative;
-  }
-
-  .pricing-card.featured {
-    background: linear-gradient(160deg, rgba(26,108,246,0.12), rgba(15,155,107,0.08));
-    border-color: rgba(26,108,246,0.3);
-    transform: scale(1.03);
-  }
-
-  .pricing-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, var(--blue), var(--green));
-    color: white;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 16px;
-    border-radius: 20px;
-    white-space: nowrap;
-  }
-
-  .pricing-tier {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-softer);
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    margin-bottom: 12px;
-  }
-
-  .pricing-price {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .pricing-period {
-    font-size: 13px;
-    color: var(--text-softer);
-    margin-bottom: 20px;
-  }
-
-  .pricing-desc {
-    font-size: 13px;
-    color: var(--text-soft);
-    margin-bottom: 24px;
-    line-height: 1.6;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    padding-bottom: 24px;
-  }
-
-  .pricing-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 32px;
-  }
-
-  .pricing-features li {
-    font-size: 13px;
-    color: var(--text-soft);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .pricing-features li::before {
-    content: '✓';
-    color: var(--green);
-    font-weight: 700;
-    font-size: 12px;
-    flex-shrink: 0;
-  }
-
-  /* ── TESTIMONIAL / QUOTE ── */
-  .quote-section {
-    padding: 100px 48px;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .quote-text {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(22px, 3vw, 32px);
-    font-weight: 600;
-    line-height: 1.5;
-    color: white;
-    margin-bottom: 24px;
-    font-style: italic;
-  }
-
-  .quote-author {
-    font-size: 14px;
-    color: var(--text-softer);
-  }
-
-  /* ── CTA SECTION ── */
-  .cta-section {
-    padding: 100px 48px;
-    text-align: center;
-    background: linear-gradient(160deg, rgba(26,108,246,0.08), rgba(15,155,107,0.06));
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .cta-section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 5vw, 56px);
-    font-weight: 700;
-    letter-spacing: -1.5px;
-    margin-bottom: 16px;
-  }
-
-  .cta-section p {
-    font-size: 18px;
-    color: var(--text-soft);
-    margin-bottom: 40px;
-    line-height: 1.7;
-  }
-
-  /* ── DEMO FORM ── */
-  #demo {
-    padding: 120px 48px;
-    max-width: 640px;
-    margin: 0 auto;
-  }
-
-  .form-group {
-    margin-bottom: 16px;
-  }
-
-  .form-label {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-softer);
-    text-transform: uppercase;
-    letter-spacing: .06em;
-    margin-bottom: 7px;
-  }
-
-  .form-input {
-    width: 100%;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 10px;
-    padding: 13px 16px;
-    color: white;
-    font-size: 15px;
-    font-family: 'DM Sans', sans-serif;
-    transition: border-color 0.2s;
-    outline: none;
-  }
-
-  .form-input:focus { border-color: var(--blue); }
-  .form-input::placeholder { color: rgba(255,255,255,0.25); }
-
-  .form-select {
-    width: 100%;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 10px;
-    padding: 13px 16px;
-    color: white;
-    font-size: 15px;
-    font-family: 'DM Sans', sans-serif;
-    outline: none;
-    cursor: pointer;
-    appearance: none;
-  }
-
-  .form-select option { background: #0a1628; }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 48px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  footer p { font-size: 13px; color: var(--text-softer); }
-
-  .footer-links {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-  }
-
-  .footer-links a {
-    font-size: 13px;
-    color: var(--text-softer);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: white; }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(20px); }
-    to { opacity:1; transform:translateY(0); }
-  }
-
-  .fade-up {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    /* Nav */
-    nav { padding: 14px 16px; }
-    .nav-links { display: none; }
-
-    /* Hero */
-    .hero { padding: 100px 16px 60px; }
-    .hero h1 { font-size: 36px; letter-spacing: -1px; }
-    .hero-sub { font-size: 15px; }
-    .hero-ctas { flex-direction: column; align-items: center; }
-    .hero-ctas a { width: 100%; text-align: center; }
-    .hero-stats { gap: 20px; flex-wrap: wrap; justify-content: center; }
-    .hero-stat { min-width: 120px; }
-    .hero-stat-divider { display: none; }
-    .hero-stat-num { font-size: 28px; }
-
-    /* Benefits section */
-    #benefits { padding: 60px 16px; }
-    .benefits-grid-2, .benefits-grid-3 {
-      grid-template-columns: 1fr !important;
-      gap: 16px !important;
-    }
-
-    /* CMS banner */
-    .cms-banner { padding: 28px 16px; margin: 0 16px 60px; }
-    .cms-banner-title { font-size: 26px; }
-    .cms-stats {
-      grid-template-columns: 1fr !important;
-      gap: 12px;
-    }
-    .cms-stat-num { font-size: 32px; }
-
-    /* Features */
-    .features { padding: 60px 16px; }
-    .features-grid {
-      grid-template-columns: 1fr !important;
-      gap: 12px;
-    }
-    .feature-card { padding: 24px; }
-
-    /* How it works */
-    .how { padding: 60px 16px; }
-    .how-inner {
-      grid-template-columns: 1fr !important;
-      gap: 40px;
-    }
-    .phone-mockup { max-width: 340px; margin: 0 auto; }
-
-    /* Quote */
-    .quote-section { padding: 60px 16px; }
-    .quote-text { font-size: 20px; }
-
-    /* Pricing */
-    .pricing { padding: 60px 16px; }
-    .pricing-grid {
-      grid-template-columns: 1fr !important;
-      gap: 16px;
-    }
-    .pricing-card.featured { transform: none; }
-    .pricing-card { padding: 28px 24px; }
-
-    /* CTA */
-    .cta-section { padding: 60px 16px; }
-    .cta-section h2 { font-size: 32px; }
-
-    /* Demo form */
-    #demo { padding: 60px 16px; }
-    .form-name-grid {
-      grid-template-columns: 1fr !important;
-    }
-
-    /* Footer */
-    footer { padding: 32px 16px; flex-direction: column; text-align: center; gap: 20px; }
-    .footer-links { justify-content: center; flex-wrap: wrap; gap: 16px; }
-
-    /* General overflow fix */
-    body { overflow-x: hidden; }
-    section { overflow-x: hidden; }
-  }
-
-  /* Extra small phones */
-  @media (max-width: 390px) {
-    .hero h1 { font-size: 30px; }
-    .btn-primary, .btn-secondary { padding: 14px 24px; font-size: 14px; }
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #111827; background: #f9fafb; }
+  .header { background: #0f2744; padding: 24px 0; }
+  .header-inner { max-width: 760px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 12px; }
+  .logo { background: #1a6cf6; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+  .brand { color: white; font-size: 18px; font-weight: 700; }
+  .container { max-width: 760px; margin: 40px auto; padding: 0 24px 80px; }
+  h1 { font-size: 28px; font-weight: 700; color: #111827; margin-bottom: 8px; }
+  .updated { font-size: 13px; color: #6b7280; margin-bottom: 40px; }
+  h2 { font-size: 18px; font-weight: 700; color: #111827; margin: 32px 0 12px; }
+  p { font-size: 15px; color: #374151; line-height: 1.7; margin-bottom: 12px; }
+  ul { font-size: 15px; color: #374151; line-height: 1.7; margin: 8px 0 12px 24px; }
+  ul li { margin-bottom: 6px; }
+  strong { color: #111827; font-weight: 700; }
+  .highlight { background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 16px; margin: 20px 0; font-size: 14px; color: #92400e; line-height: 1.6; }
+  .important-box { background: #eff6ff; border-left: 4px solid #1a6cf6; padding: 16px 20px; margin: 20px 0; font-size: 14px; color: #1e3a8a; line-height: 1.7; }
+  .red-box { background: #fef2f2; border-left: 4px solid #dc2626; padding: 16px 20px; margin: 20px 0; font-size: 14px; color: #7f1d1d; line-height: 1.7; }
+  a { color: #1a6cf6; }
+  .footer { text-align: center; padding: 40px 24px; font-size: 13px; color: #9ca3af; border-top: 1px solid #e5e7eb; margin-top: 60px; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-mark">SB</div>
-    <span class="nav-logo-text">Snapback Health</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#benefits">Benefits</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#cms">CMS Compliance</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="https://app.snapbackhealth.com" style="color:var(--text-soft);text-decoration:none;font-size:14px;font-weight:500;">Patient login</a></li>
-    <li><a href="#demo" class="nav-cta">Request a demo</a></li>
+<div class="header">
+  <div class="header-inner">
+    <div class="logo">SB</div>
+    <div class="brand">Snapback Health</div>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Terms of Service</h1>
+  <div class="updated">Last updated: May 17, 2026 · Effective date: May 17, 2026</div>
+
+  <h2>1. Acceptance of Terms</h2>
+  <p>By creating an account or using the Snapback Health patient portal (the "Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Service. These Terms constitute a legally binding agreement between you and Snapback Health Technologies LLC ("Snapback Health," "we," "us," or "our"). Your use of the Service is also governed by our <a href="https://snapbackhealth.com/privacy-policy">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
+
+  <h2>2. Description of Service</h2>
+  <p>Snapback Health provides a web-based patient recovery portal for post-surgical and post-procedural patients. The Service includes:</p>
+  <ul>
+    <li>Personalized recovery tracking, education content, and daily checklists</li>
+    <li>Exercise programs and activity logging</li>
+    <li>Medication reminders and health metric logging (vital signs, pain, mood, sleep)</li>
+    <li>AI-powered nurse chat for general recovery questions (with PHI sanitization applied before transmission to our AI provider)</li>
+    <li>Wound and access site photo monitoring tools with AI-assisted assessment</li>
+    <li>Patient-reported outcome surveys (KOOS Jr., HOOS Jr., QuickDASH, PROMIS, and others)</li>
+    <li>Appointment scheduling, tracking, and reminders</li>
+    <li>Email and SMS recovery reminders (opt-in only)</li>
   </ul>
-</nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow-2"></div>
-
-  <div class="hero-badge">
-    <div class="hero-badge-dot"></div>
-    AI-powered recovery — built by a PA-C for orthopedic practices
+  <h2>3. Medical Disclaimer</h2>
+  <div class="red-box">
+    <strong>IMPORTANT:</strong> The Snapback Health platform is a recovery support and engagement tool only. It is <strong>not a licensed medical device</strong>, does not provide medical diagnoses, and does not replace the advice of your physician, surgeon, or other licensed healthcare provider.
   </div>
+  <p>The AI nurse chat feature provides general recovery information only and is not a substitute for professional medical advice. The AI wound and access site assessment features provide educational information only and are not diagnostic tools. Always consult your healthcare provider for medical questions specific to your condition.</p>
+  <p><strong>In case of a medical emergency — including chest pain, severe shortness of breath, uncontrolled bleeding, signs of stroke, or suicidal thoughts — call 911 or go to your nearest emergency room immediately.</strong> Do not use the Service to report or respond to medical emergencies.</p>
 
-  <h1>Better outcomes.<br/><em>Fewer phone calls.</em><br/>Happier patients.</h1>
-
-  <p class="hero-sub">Snapback Health gives your patients a 24/7 AI nurse, personalized recovery guidance, and intelligent monitoring — so your staff spends less time on the phone and more time on what matters.</p>
-
-  <div class="hero-ctas">
-    <a href="#demo" class="btn-primary">Request a demo</a>
-    <a href="https://app.snapbackhealth.com" class="btn-secondary">See it live →</a>
-  </div>
-
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num">24/7</div>
-      <div class="hero-stat-label">AI nurse available to every patient</div>
-    </div>
-    <div class="hero-stat-divider"></div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">Day 1</div>
-      <div class="hero-stat-label">Deployed and live at your clinic</div>
-    </div>
-    <div class="hero-stat-divider"></div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">Any</div>
-      <div class="hero-stat-label">Orthopedic procedure supported</div>
-    </div>
-    <div class="hero-stat-divider"></div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">$399</div>
-      <div class="hero-stat-label">Per month — all inclusive</div>
-    </div>
-  </div>
-</section>
-
-<!-- PRIVATE CLINIC BENEFITS -->
-<section style="padding: 120px 48px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;" id="benefits">
-
-  <div class="features-header fade-up">
-    <div class="section-label">Built for independent practices</div>
-    <div class="section-title">Your staff is not a call center.<br/>We fix that.</div>
-    <p class="section-sub" style="margin: 0 auto;">Private orthopedic practices, pain management clinics, and ASCs use Snapback Health to work smarter — not just to check compliance boxes.</p>
-  </div>
-
-  <!-- BENEFIT CARDS - 2 column large cards -->
-  <div class="benefits-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
-
-    <!-- CALL VOLUME -->
-    <div style="background:linear-gradient(135deg,rgba(26,108,246,0.08),rgba(26,108,246,0.02));border:1px solid rgba(26,108,246,0.2);border-radius:20px;padding:40px;position:relative;overflow:hidden;" class="fade-up">
-      <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(26,108,246,0.06);"></div>
-      <div style="font-size:48px;margin-bottom:20px;">📞</div>
-      <div style="font-size:22px;font-weight:700;color:white;margin-bottom:12px;line-height:1.3;">Your staff stops being a phone triage service</div>
-      <div style="font-size:14px;color:var(--text-soft);line-height:1.8;margin-bottom:20px;">
-        The most common post-op calls — "Is this normal?", "Can I take ibuprofen with Norco?", "My wound looks different, should I be worried?" — are answered instantly by the AI nurse 24 hours a day, 7 days a week. Your staff handles the calls that actually need a human.
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);">
-          <span style="color:#1a6cf6;font-weight:700;">✓</span> Evidence-based medication answers — Norco, ibuprofen, Tylenol dosing
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);">
-          <span style="color:#1a6cf6;font-weight:700;">✓</span> Procedure-specific recovery expectations — what's normal vs not
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);">
-          <span style="color:#1a6cf6;font-weight:700;">✓</span> Real-time PubMed search for complex clinical questions
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);">
-          <span style="color:#1a6cf6;font-weight:700;">✓</span> After-hours coverage without on-call nurse costs
-        </div>
-      </div>
-    </div>
-
-    <!-- WOUND SCANNER -->
-    <div style="background:linear-gradient(135deg,rgba(15,155,107,0.08),rgba(15,155,107,0.02));border:1px solid rgba(15,155,107,0.2);border-radius:20px;padding:40px;position:relative;overflow:hidden;" class="fade-up">
-      <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(15,155,107,0.06);"></div>
-      <div style="font-size:48px;margin-bottom:20px;">📸</div>
-      <div style="font-size:22px;font-weight:700;color:white;margin-bottom:12px;line-height:1.3;">Wound concern calls resolved remotely</div>
-      <div style="font-size:14px;color:var(--text-soft);line-height:1.8;margin-bottom:20px;">
-        Patients send a photo of their incision. The AI uses CDC NHSN surgical site infection criteria to assess it and flag concerning findings to your team — with a structured report, not a panicked voicemail. Most wound concerns are resolved without a clinic visit.
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);">
-          <span style="color:#0f9b6b;font-weight:700;">✓</span> CDC NHSN SSI criteria built into every assessment
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);">
-          <span style="color:#0f9b6b;font-weight:700;">✓</span> Procedure-specific healing context — TKR vs shoulder vs carpal tunnel
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);">
-          <span style="color:#0f9b6b;font-weight:700;">✓</span> Three-level recommendation — normal, monitor, contact care team
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);">
-          <span style="color:#0f9b6b;font-weight:700;">✓</span> Photos stored and visible in provider dashboard
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECOND ROW -->
-  <div class="benefits-grid-3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
-
-    <!-- SURGERY CANCELLATIONS -->
-    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px;" class="fade-up">
-      <div style="font-size:40px;margin-bottom:16px;">🗓️</div>
-      <div style="font-size:18px;font-weight:700;color:white;margin-bottom:10px;line-height:1.3;">Fewer surgery cancellations</div>
-      <div style="font-size:13px;color:var(--text-soft);line-height:1.7;margin-bottom:16px;">Pre-op cancellations due to missed labs, incomplete clearances, or patient confusion cost your practice thousands per case. Snapback guides patients through every pre-op requirement with reminders and daily checklists.</div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> Procedure-specific pre-op checklists</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> Daily reminder emails starting 14 days out</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> NPO, medication hold, and prep instructions</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> Provider notified if pre-op tasks incomplete</div>
-      </div>
-    </div>
-
-    <!-- PATIENT SATISFACTION -->
-    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px;" class="fade-up">
-      <div style="font-size:40px;margin-bottom:16px;">⭐</div>
-      <div style="font-size:18px;font-weight:700;color:white;margin-bottom:10px;line-height:1.3;">Higher patient satisfaction scores</div>
-      <div style="font-size:13px;color:var(--text-soft);line-height:1.7;margin-bottom:16px;">Patients who feel supported during recovery leave better reviews, refer more friends, and return for future procedures. Snapback gives them a premium experience that reflects directly on your practice's reputation.</div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> Personalized daily tips by procedure and day</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> Achievement badges and streak gamification</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> HCAHPS satisfaction survey built in</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> 1-year outcome letter patients share with family</div>
-      </div>
-    </div>
-
-    <!-- PROTOCOL COMPLIANCE -->
-    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px;" class="fade-up">
-      <div style="font-size:40px;margin-bottom:16px;">📋</div>
-      <div style="font-size:18px;font-weight:700;color:white;margin-bottom:10px;line-height:1.3;">Higher protocol compliance</div>
-      <div style="font-size:13px;color:var(--text-soft);line-height:1.7;margin-bottom:16px;">Patients who follow their recovery protocols have better outcomes, fewer complications, and lower readmission rates. Daily reminders, exercise tracking, and medication logging keep patients on track between appointments.</div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> Guided exercise tracker with video instructions</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> Medication tracking with refill requests</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> Daily biomarker logging with alert thresholds</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:8px;"><span style="color:#e08c00;">✓</span> 30-day readmission tracking and early intervention</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DIVIDER -->
-<div style="max-width:1100px;margin:0 auto 0;padding:0 48px;position:relative;z-index:1;">
-  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);"></div>
-</div>
-
-<!-- CMS COMPLIANCE BANNER -->
-<div style="padding: 0 48px; position: relative; z-index: 1;" id="cms">
-  <div class="cms-banner fade-up">
-    <div class="section-label">CMS Mandate — Effective January 1, 2026</div>
-    <div class="cms-banner-title">Hospital &amp; Medicare billing?<br/>We have that covered too.</div>
-    <p class="cms-banner-sub">CMS now requires 50% KOOS Jr. and HOOS Jr. completion for TKA and THA patients under the TEAM Model. Snapback automates collection, sends reminders, and exports CMS-formatted data in one click — protecting your Medicare reimbursement automatically.</p>
-    <a href="#demo" class="btn-primary">See how Snapback solves this</a>
-    <div class="cms-stats">
-      <div class="cms-stat-card">
-        <div class="cms-stat-num" style="color: var(--blue);">741</div>
-        <div class="cms-stat-label">Hospitals mandated by CMS TEAM Model starting January 2026</div>
-      </div>
-      <div class="cms-stat-card">
-        <div class="cms-stat-num" style="color: var(--amber);">25-32%</div>
-        <div class="cms-stat-label">Average PROM completion rate at most practices today — well below the required 50%</div>
-      </div>
-      <div class="cms-stat-card">
-        <div class="cms-stat-num" style="color: var(--green);">Sept 30</div>
-        <div class="cms-stat-label">2026 deadline for mandatory CMS PRO-PM data submissions — the clock is ticking</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- FEATURES -->
-<section class="features" id="features">
-  <div class="features-header fade-up">
-    <div class="section-label">Platform features</div>
-    <div class="section-title">Everything your patients need.<br/>Everything your clinic requires.</div>
-  </div>
-
-  <div class="features-grid">
-    <div class="feature-card fade-up">
-      <div class="feature-icon" style="background:rgba(26,108,246,0.12);">📋</div>
-      <div class="feature-title">Automated PRO Collection</div>
-      <div class="feature-desc">KOOS Jr., HOOS Jr., QuickDASH, and PROMIS Global-10 delivered automatically at every CMS-required time point. Survey reminders sent by email. Supports any orthopedic procedure.</div>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon" style="background:rgba(15,155,107,0.12);">🤖</div>
-      <div class="feature-title">AI Nurse Chat</div>
-      <div class="feature-desc">24/7 evidence-based nurse chat powered by Claude AI with real-time PubMed search. Answers medication questions, wound concerns, and recovery questions instantly.</div>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon" style="background:rgba(224,140,0,0.12);">📸</div>
-      <div class="feature-title">AI Wound Scanner</div>
-      <div class="feature-desc">Patients upload incision photos for AI-powered observation using CDC NHSN SSI criteria. Flags concerning findings and alerts your care team automatically.</div>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon" style="background:rgba(147,51,234,0.12);">📊</div>
-      <div class="feature-title">Provider Dashboard</div>
-      <div class="feature-desc">Real-time patient overview with CMS compliance tracking, outcome scores, biomarker trends, wound photo review, and one-click CMS data export.</div>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon" style="background:rgba(214,58,58,0.12);">🚨</div>
-      <div class="feature-title">Smart Alert System</div>
-      <div class="feature-desc">Automatic email alerts for fever, high pain, wound concerns, SSI symptoms, and 30-day readmissions. Role-based routing to nurses and providers.</div>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon" style="background:rgba(8,145,178,0.12);">🏆</div>
-      <div class="feature-title">Patient Engagement</div>
-      <div class="feature-desc">Recovery streaks, achievement badges, progress visualization, daily personalized tips, and gamification that keeps patients logging in every single day.</div>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon" style="background:rgba(15,155,107,0.12);">📄</div>
-      <div class="feature-title">1-Year Outcome Letter</div>
-      <div class="feature-desc">Auto-generates a printable PDF outcome letter after the 1-year survey showing improvement from baseline, CMS Substantial Clinical Benefit status, and recovery summary.</div>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon" style="background:rgba(26,108,246,0.12);">💊</div>
-      <div class="feature-title">Medication & Exercise Tracking</div>
-      <div class="feature-desc">Full medication tracker with refill requests, exercise tracker with YouTube-guided therapy videos, and biomarker logging for pain, temperature, and glucose.</div>
-    </div>
-    <div class="feature-card fade-up">
-      <div class="feature-icon" style="background:rgba(224,140,0,0.12);">⭐</div>
-      <div class="feature-title">HCAHPS Satisfaction Survey</div>
-      <div class="feature-desc">Standardized 7-question patient satisfaction survey that feeds hospital Value-Based Purchasing scores. Exportable for CMS reporting with one click.</div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how">
-  <div class="how-inner">
-    <div>
-      <div class="section-label fade-up">How it works</div>
-      <div class="section-title fade-up">Deploy in hours,<br/>not months</div>
-      <p class="section-sub fade-up" style="margin-bottom:48px;">No IT department. No 6-month implementation. No EHR integration required. Your clinic is live the same day you sign up.</p>
-
-      <div class="how-steps">
-        <div class="how-step fade-up">
-          <div class="how-step-num">1</div>
-          <div>
-            <div class="how-step-title">Clinic setup in 30 minutes</div>
-            <div class="how-step-desc">We configure the platform with your clinic name, branding, provider accounts, and procedure protocols. Done the same day.</div>
-          </div>
-        </div>
-        <div class="how-step fade-up">
-          <div class="how-step-num">2</div>
-          <div>
-            <div class="how-step-title">Patients onboard themselves</div>
-            <div class="how-step-desc">Send patients a link. They sign up, enter their procedure and surgery date, and the portal personalizes itself automatically. No paper forms.</div>
-          </div>
-        </div>
-        <div class="how-step fade-up">
-          <div class="how-step-num">3</div>
-          <div>
-            <div class="how-step-title">Surveys collect automatically</div>
-            <div class="how-step-desc">KOOS Jr. and HOOS Jr. surveys trigger at every CMS-required time point. Email reminders go out automatically. Completion rates exceed 50%.</div>
-          </div>
-        </div>
-        <div class="how-step fade-up">
-          <div class="how-step-num">4</div>
-          <div>
-            <div class="how-step-title">Export for CMS in one click</div>
-            <div class="how-step-desc">Download your complete KOOS/HOOS dataset including individual question answers, Medicare Beneficiary IDs, and risk variables — formatted for CMS submission.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="phone-mockup fade-up">
-      <div class="phone-notch"></div>
-      <div class="phone-screen-label">Snapback Health · Day 14</div>
-      <div class="phone-screen-title">Good morning, Sarah!</div>
-      <div class="phone-screen-sub">Day 14 of your Total Knee Replacement recovery. You are doing amazing.</div>
-      <div class="phone-score-pill">
-        <span style="font-size:12px;color:rgba(255,255,255,0.5);">Recovery score</span>
-        <span style="font-size:18px;font-weight:700;color:white;">78</span>
-        <span style="background:#0f9b6b;border-radius:20px;padding:2px 8px;font-size:10px;font-weight:600;color:white;">Good progress</span>
-      </div>
-      <div class="phone-stats">
-        <div class="phone-stat">
-          <div class="phone-stat-val">14</div>
-          <div class="phone-stat-lab">Day</div>
-        </div>
-        <div class="phone-stat">
-          <div class="phone-stat-val">7</div>
-          <div class="phone-stat-lab">Streak 🔥</div>
-        </div>
-        <div class="phone-stat">
-          <div class="phone-stat-val">6/8</div>
-          <div class="phone-stat-lab">Water</div>
-        </div>
-      </div>
-      <div class="phone-tip">
-        <div class="phone-tip-label">Today's recovery tip</div>
-        <div class="phone-tip-text">Work toward 90° of knee bend. Consistent range of motion exercises now prevent stiffness later.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- QUOTE -->
-<div class="quote-section fade-up">
-  <p class="quote-text">"The single biggest challenge in meeting CMS PRO-PM requirements is getting patients to actually complete their surveys. Snapback Health solves this automatically."</p>
-  <div class="quote-author">Built by a PA-C for orthopedic practices</div>
-</div>
-
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <div class="fade-up">
-    <div class="section-label">Simple, transparent pricing</div>
-    <div class="section-title">No setup fees. No contracts.</div>
-    <p class="section-sub" style="margin:0 auto;">Month-to-month. Cancel anytime. Your first month is free while you evaluate the platform.</p>
-  </div>
-
-  <div class="pricing-grid">
-    <div class="pricing-card fade-up">
-      <div class="pricing-tier">Starter</div>
-      <div class="pricing-price">$199</div>
-      <div class="pricing-period">per month</div>
-      <div class="pricing-desc">Perfect for independent practices getting started with digital recovery management.</div>
-      <ul class="pricing-features">
-        <li>Up to 50 active patients</li>
-        <li>2 provider accounts</li>
-        <li>All orthopedic procedures</li>
-        <li>KOOS Jr. &amp; HOOS Jr. collection</li>
-        <li>AI nurse chat</li>
-        <li>AI wound scanner</li>
-        <li>Email reminders</li>
-        <li>CMS CSV export</li>
-      </ul>
-      <a href="#demo" class="btn-secondary" style="display:block;text-align:center;">Get started</a>
-    </div>
-
-    <div class="pricing-card featured fade-up">
-      <div class="pricing-badge">Most popular</div>
-      <div class="pricing-tier">Growth</div>
-      <div class="pricing-price">$399</div>
-      <div class="pricing-period">per month</div>
-      <div class="pricing-desc">For growing practices that need more patients and advanced compliance reporting.</div>
-      <ul class="pricing-features">
-        <li>Up to 150 active patients</li>
-        <li>5 provider accounts</li>
-        <li>Everything in Starter</li>
-        <li>HCAHPS satisfaction surveys</li>
-        <li>Clinic outcome score dashboard</li>
-        <li>PDF outcome letters</li>
-        <li>Priority support</li>
-      </ul>
-      <a href="#demo" class="btn-primary" style="display:block;text-align:center;">Get started</a>
-    </div>
-
-    <div class="pricing-card fade-up" style="background:linear-gradient(160deg,rgba(26,108,246,0.06),rgba(15,155,107,0.04));border-color:rgba(26,108,246,0.15);">
-      <div class="pricing-tier">Enterprise</div>
-      <div class="pricing-price" style="font-size:36px;margin-top:8px;">Custom</div>
-      <div class="pricing-period">tailored to your practice</div>
-      <div class="pricing-desc">For hospital systems, multi-location groups, and large orthopedic practices with complex needs.</div>
-      <ul class="pricing-features">
-        <li>Custom patient and provider volume</li>
-        <li>Multi-location and multi-clinic support</li>
-        <li>Everything in Growth</li>
-        <li>Dedicated implementation specialist</li>
-        <li>Custom clinic branding and white-label</li>
-        <li>EHR integration roadmap</li>
-        <li>SLA and uptime guarantees</li>
-        <li>HIPAA BAA included</li>
-        <li>Quarterly outcome reporting</li>
-      </ul>
-      <a href="#demo" class="btn-primary" style="display:block;text-align:center;">Talk to us</a>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section fade-up">
-  <h2>Ready to protect your<br/>Medicare reimbursement?</h2>
-  <p>Join the practices using Snapback Health to automate CMS compliance,<br/>engage patients, and improve outcomes — starting today.</p>
-  <a href="#demo" class="btn-primary">Request a free demo</a>
-</section>
-
-<!-- DEMO FORM -->
-<section id="demo">
-  <div class="fade-up" style="text-align:center;margin-bottom:48px;">
-    <div class="section-label">Request a demo</div>
-    <div class="section-title">See it in action</div>
-    <p class="section-sub" style="margin:12px auto 0;">We will set up a personalized demo for your practice within 24 hours. No commitment required.</p>
-  </div>
-
-  <form class="fade-up" onsubmit="submitDemo(event)">
-    <div class="form-name-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-      <div class="form-group">
-        <label class="form-label">First name</label>
-        <input class="form-input" type="text" placeholder="John" required/>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Last name</label>
-        <input class="form-input" type="text" placeholder="Smith" required/>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Work email</label>
-      <input class="form-input" type="email" placeholder="john@yourclinic.com" required/>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Clinic or practice name</label>
-      <input class="form-input" type="text" placeholder="Orthopedic and Spine Institute" required/>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Your role</label>
-      <select class="form-select" required>
-        <option value="">Select your role</option>
-        <option>Physician / Surgeon</option>
-        <option>Physician Assistant</option>
-        <option>Nurse Practitioner</option>
-        <option>Practice Administrator</option>
-        <option>Clinic Manager</option>
-        <option>Other</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">How many TKA/THA procedures per year?</label>
-      <select class="form-select">
-        <option value="">Select volume</option>
-        <option>1-50</option>
-        <option>51-150</option>
-        <option>151-500</option>
-        <option>500+</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Anything specific you want to see?</label>
-      <textarea class="form-input" style="height:80px;resize:none;" placeholder="e.g. CMS compliance dashboard, AI nurse chat, wound scanner..."></textarea>
-    </div>
-    <button type="submit" class="btn-primary" style="width:100%;padding:16px;" id="demo-btn">Request my free demo</button>
-    <div id="demo-success" style="display:none;text-align:center;margin-top:16px;background:rgba(15,155,107,0.1);border:1px solid rgba(15,155,107,0.3);border-radius:10px;padding:16px;color:#4ade80;font-size:14px;">
-      ✓ Request received! We will reach out within 24 hours.
-    </div>
-    <div id="demo-error" style="display:none;text-align:center;margin-top:16px;background:rgba(214,58,58,0.1);border:1px solid rgba(214,58,58,0.3);border-radius:10px;padding:16px;color:#f87171;font-size:14px;">
-      Something went wrong. Please email us directly at john.oshea@snapbackhealth.com
-    </div>
-  </form>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div>
-    <div class="nav-logo" style="margin-bottom:8px;">
-      <div class="nav-logo-mark">SB</div>
-      <span class="nav-logo-text">Snapback Health</span>
-    </div>
-    <p>© 2026 Snapback Health Technologies LLC. All rights reserved.</p>
-    <p style="margin-top:4px;">Flagstaff, Arizona · snapbackhealth.com</p>
-  </div>
-  <ul class="footer-links">
-    <li><a href="#features">Features</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#demo">Contact</a></li>
-    <li><a href="https://app.snapbackhealth.com">Patient portal</a></li>
-    <li><a href="/privacy-policy">Privacy policy</a></li>
-    <li><a href="/terms">Terms of service</a></li>
+  <h2>4. Eligibility and Account Registration</h2>
+  <p>The Service is available to patients of all ages who have been invited by a participating healthcare clinic and have entered a valid clinic code during account creation. Minor patients (under 18) may use the Service only with parental or legal guardian consent. For patients under 13, a parent or guardian must create and manage the account. Healthcare providers are responsible for ensuring appropriate parental consent is obtained before inviting minor patients to the platform.</p>
+  <p>By creating an account, you represent and warrant that:</p>
+  <ul>
+    <li>You are at least 18 years of age, or have parental/guardian consent if under 18</li>
+    <li>You have been invited to use the Service by a participating healthcare provider</li>
+    <li>All information you provide is accurate, current, and complete</li>
+    <li>You will maintain the accuracy of such information</li>
+    <li>Your use of the Service does not violate any applicable law or regulation</li>
   </ul>
-</footer>
 
-<script>
-  // ── SCROLL ANIMATIONS ──
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
+  <h2>5. SMS Messaging Terms</h2>
+  <p>By enabling SMS reminders in your account settings, you consent to receive automated text messages from Snapback Health at the mobile number you provide.</p>
+  <ul>
+    <li><strong>Program name:</strong> Snapback Health Recovery Reminders</li>
+    <li><strong>Description:</strong> Automated medication reminders, exercise reminders, wound photo reminders, daily check-in reminders, and appointment reminders for post-surgical and post-procedural patients</li>
+    <li><strong>Message frequency:</strong> Varies based on your reminder settings — up to 6 messages per day</li>
+    <li><strong>Charges:</strong> <strong>Message and data rates may apply</strong> based on your mobile carrier plan</li>
+    <li><strong>Opt out:</strong> Reply <strong>STOP</strong> to any text message at any time, or turn off SMS reminders in your account settings under the Reminders tab. Opt-out is immediate.</li>
+    <li><strong>Help:</strong> Reply <strong>HELP</strong> to any message or email <a href="mailto:hello@snapbackhealth.com">hello@snapbackhealth.com</a> for support</li>
+    <li><strong>Carriers:</strong> Major U.S. carriers including AT&T, Verizon, T-Mobile, Sprint, and others are supported. Carriers are not liable for delayed or undelivered messages.</li>
+  </ul>
+  <p>We do not share your mobile number with third parties for marketing or promotional purposes under any circumstances.</p>
 
-  document.querySelectorAll('.fade-up').forEach(function(el) {
-    observer.observe(el);
-  });
+  <h2>6. HIPAA and Health Information</h2>
+  <p>Snapback Health acts as a <strong>Business Associate</strong> under the Health Insurance Portability and Accountability Act of 1996 ("HIPAA") to your healthcare provider. We have entered into a Business Associate Agreement with your healthcare provider that governs our handling of your Protected Health Information ("PHI"). Our complete privacy practices are described in our <a href="https://snapbackhealth.com/privacy-policy">Privacy Policy</a>.</p>
+  <p>You acknowledge and consent that:</p>
+  <ul>
+    <li>Your authorized healthcare provider may access your recovery data, vital signs, photographs, and survey results through our provider portal</li>
+    <li>We share your information with certain service providers (Supabase, Vercel, Resend, Twilio, Anthropic, and Cloudflare) under HIPAA Business Associate Agreements, solely to operate the Service</li>
+    <li>You have the rights described in our Privacy Policy, including the right to access, amend, and request restrictions on your health information</li>
+  </ul>
 
-  // ── DEMO FORM ──
-  async function submitDemo(e) {
-    e.preventDefault();
-    var btn = document.getElementById('demo-btn');
-    var success = document.getElementById('demo-success');
-    var error = document.getElementById('demo-error');
+  <h2>7. Account Security and Responsibilities</h2>
+  <p>You are responsible for:</p>
+  <ul>
+    <li>Maintaining the confidentiality of your account credentials (email and password)</li>
+    <li>All activity that occurs under your account</li>
+    <li>Using a strong, unique password that meets minimum complexity requirements</li>
+    <li>Providing accurate and complete health information</li>
+    <li>Notifying us immediately at hello@snapbackhealth.com of any unauthorized account access or suspected security breach</li>
+    <li>Logging out of your account when using a shared or public device</li>
+  </ul>
 
-    var fields = e.target.querySelectorAll('input, select, textarea');
-    var firstName = fields[0].value.trim();
-    var lastName = fields[1].value.trim();
-    var email = fields[2].value.trim();
-    var clinic = fields[3].value.trim();
-    var role = fields[4].value;
-    var volume = fields[5].value;
-    var notes = fields[6].value.trim();
+  <h2>8. Acceptable Use</h2>
+  <p>You agree not to:</p>
+  <ul>
+    <li>Use the Service for any unlawful, fraudulent, or unauthorized purpose</li>
+    <li>Attempt to access another patient's health information or any data not belonging to you</li>
+    <li>Attempt to circumvent, disable, or interfere with security features of the Service</li>
+    <li>Use automated tools, bots, or scrapers to access the Service without our written permission</li>
+    <li>Interfere with or disrupt the Service, its servers, or networks</li>
+    <li>Upload viruses, malware, or any other malicious code</li>
+    <li>Use the AI nurse chat for emergency medical situations</li>
+    <li>Share your account credentials with others, including family members or other patients</li>
+    <li>Reverse engineer, decompile, or attempt to extract source code from the Service</li>
+    <li>Use the Service to harass, threaten, or harm any person</li>
+    <li>Submit false or misleading information through the Service</li>
+  </ul>
 
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-    if (error) error.style.display = 'none';
+  <h2>9. Intellectual Property</h2>
+  <p>The Snapback Health platform, including its software, design, user interfaces, content, algorithms, trademarks, logos, and all other materials, is the property of Snapback Health Technologies LLC and is protected by United States and international copyright, trademark, patent, and other intellectual property laws. You may not copy, modify, distribute, sell, license, or create derivative works from our platform without our prior written consent.</p>
+  <p>You retain ownership of the health information and content you submit through the Service. By submitting content, you grant Snapback Health a non-exclusive, royalty-free license to use, store, process, and display that content solely for the purpose of providing the Service and as described in our Privacy Policy.</p>
 
-    try {
-      var response = await fetch('https://tiny-wave-96f5.joshea102.workers.dev', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'demo-request',
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          clinic: clinic,
-          role: role,
-          volume: volume,
-          notes: notes
-        })
-      });
+  <h2>10. Service Availability and Modifications</h2>
+  <p>We strive to maintain a reliable Service but do not guarantee uninterrupted availability. The Service may be temporarily unavailable due to maintenance, updates, technical issues, or events beyond our reasonable control. We are not liable for any consequences of Service unavailability, including missed reminders or delayed notifications. We reserve the right to modify, suspend, or discontinue any feature of the Service at any time without prior notice.</p>
 
-      if (response.ok) {
-        btn.style.display = 'none';
-        success.style.display = 'block';
-        e.target.reset();
-      } else {
-        throw new Error('Server error');
-      }
-    } catch(err) {
-      btn.textContent = 'Request my free demo';
-      btn.disabled = false;
-      if (error) error.style.display = 'block';
-    }
-  }
-</script>
+  <h2>11. Limitation of Liability</h2>
+  <div class="important-box">
+    <strong>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW:</strong> Snapback Health Technologies LLC, its officers, directors, employees, contractors, agents, suppliers, and licensors shall not be liable for any indirect, incidental, special, consequential, exemplary, or punitive damages — including but not limited to damages for loss of profits, revenue, data, use, goodwill, or other intangible losses — arising from or related to your use of the Service.
+  </div>
+  <p>This limitation applies regardless of the legal theory on which the claim is based, including but not limited to:</p>
+  <ul>
+    <li>Adverse health outcomes</li>
+    <li>Missed, delayed, or undelivered email or SMS reminders</li>
+    <li>Reliance on AI nurse chat responses or AI wound assessment results</li>
+    <li>Loss or unauthorized disclosure of data</li>
+    <li>Errors or omissions in any content displayed through the Service</li>
+    <li>Interruption or termination of the Service</li>
+  </ul>
+  <p>Our total cumulative liability for any claim arising from your use of the Service shall not exceed the greater of one hundred dollars ($100) or the amount you have paid to us in the twelve months preceding the claim. Some jurisdictions do not allow the exclusion or limitation of certain damages, so these limitations may not apply to you in full.</p>
+
+  <h2>12. Disclaimer of Warranties</h2>
+  <p>The Service is provided <strong>"AS IS" and "AS AVAILABLE"</strong> without warranties of any kind, either express or implied. We disclaim all warranties to the maximum extent permitted by law, including but not limited to warranties of merchantability, fitness for a particular purpose, non-infringement, accuracy, completeness, and uninterrupted operation. We do not warrant that the Service will meet your specific needs, be error-free, or produce any particular health outcome.</p>
+
+  <h2>13. Indemnification</h2>
+  <p>You agree to indemnify, defend, and hold harmless Snapback Health Technologies LLC, its officers, directors, employees, contractors, and agents from and against any and all claims, demands, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising from or related to: (a) your use or misuse of the Service; (b) your violation of these Terms; (c) your violation of any applicable law or regulation; (d) your violation of any third-party right; or (e) any false or misleading information you provide through the Service.</p>
+
+  <h2>14. Termination</h2>
+  <p>We reserve the right to suspend or terminate your account at any time for violation of these Terms, at the request of your healthcare provider, or if we determine that continued access would create a risk to other users, our Service, or our legal interests. You may terminate your account at any time by contacting us at hello@snapbackhealth.com. Upon termination, your right to use the Service ceases immediately. Sections of these Terms that by their nature should survive termination (including intellectual property, limitations of liability, indemnification, and dispute resolution) shall remain in effect.</p>
+
+  <h2>15. Changes to These Terms</h2>
+  <p>We may update these Terms from time to time. We will notify you of material changes by email to your registered address or through a prominent notice in the patient portal at least thirty days before changes take effect. Your continued use of the Service after the effective date of changes constitutes your acceptance of the updated Terms. If you do not agree to the updated Terms, you must stop using the Service and may terminate your account.</p>
+
+  <h2>16. Governing Law and Dispute Resolution</h2>
+  <p>These Terms are governed by and construed in accordance with the laws of the State of Arizona, without regard to its conflict of law provisions. Any disputes arising from or related to these Terms or the Service shall be resolved exclusively in the state or federal courts located in Coconino County, Arizona, and you consent to the personal jurisdiction of such courts.</p>
+  <p>Any claim must be brought within one (1) year after the cause of action arises, or be permanently barred.</p>
+
+  <h2>17. Severability and Entire Agreement</h2>
+  <p>If any provision of these Terms is found to be unenforceable, the remaining provisions will continue in full force and effect. These Terms, together with the Privacy Policy and any agreements specifically referenced herein, constitute the entire agreement between you and Snapback Health regarding the Service and supersede all prior agreements and understandings.</p>
+
+  <h2>18. Contact Us</h2>
+  <p>If you have questions about these Terms, please contact us:</p>
+  <ul>
+    <li><strong>Email:</strong> hello@snapbackhealth.com</li>
+    <li><strong>Website:</strong> snapbackhealth.com</li>
+    <li><strong>Mailing address:</strong> Snapback Health Technologies LLC, Flagstaff, Arizona, United States</li>
+  </ul>
+</div>
+
+<div class="footer">
+  © 2026 Snapback Health Technologies LLC · Flagstaff, Arizona · snapbackhealth.com
+</div>
+
 </body>
 </html>
