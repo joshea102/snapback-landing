@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SMS Reminders — Snapback Health</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #111827; background: #f9fafb; }
+  .header { background: #0f2744; padding: 24px 0; }
+  .header-inner { max-width: 760px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 12px; }
+  .logo { background: #1a6cf6; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+  .brand { color: white; font-size: 18px; font-weight: 700; }
+  .container { max-width: 760px; margin: 40px auto; padding: 0 24px 80px; }
+  h1 { font-size: 28px; font-weight: 700; color: #111827; margin-bottom: 8px; }
+  .subtitle { font-size: 15px; color: #6b7280; margin-bottom: 32px; line-height: 1.6; }
+  h2 { font-size: 18px; font-weight: 700; color: #111827; margin: 32px 0 12px; }
+  h3 { font-size: 15px; font-weight: 700; color: #111827; margin: 18px 0 8px; }
+  p { font-size: 15px; color: #374151; line-height: 1.7; margin-bottom: 12px; }
+  ul { font-size: 15px; color: #374151; line-height: 1.7; margin: 8px 0 12px 24px; }
+  ul li { margin-bottom: 6px; }
+  strong { color: #111827; font-weight: 700; }
+  .opt-in-box { background: #ffffff; border: 2px solid #1a6cf6; border-radius: 12px; padding: 24px; margin: 20px 0; }
+  .opt-in-box .label { font-size: 11px; font-weight: 700; color: #1a6cf6; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+  .consent-checkbox { display: flex; gap: 12px; align-items: flex-start; padding: 16px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; margin-bottom: 16px; }
+  .consent-checkbox .check { width: 22px; height: 22px; border: 2px solid #1a6cf6; border-radius: 4px; flex-shrink: 0; background: #1a6cf6; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px; }
+  .consent-checkbox .text { font-size: 14px; color: #374151; line-height: 1.6; }
+  .step { background: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 18px; margin-bottom: 12px; }
+  .step-num { display: inline-flex; width: 24px; height: 24px; background: #1a6cf6; color: white; border-radius: 50%; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-right: 10px; }
+  .reminder-types { background: #f9fafb; border-radius: 10px; padding: 18px; margin: 16px 0; }
+  .reminder-type { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #e5e7eb; }
+  .reminder-type:last-child { border-bottom: none; }
+  .reminder-type .icon { font-size: 20px; flex-shrink: 0; }
+  .reminder-type .info { flex: 1; }
+  .reminder-type .name { font-size: 14px; font-weight: 600; color: #111827; }
+  .reminder-type .desc { font-size: 13px; color: #6b7280; }
+  .toggle { width: 36px; height: 20px; background: #d1d5db; border-radius: 10px; position: relative; flex-shrink: 0; align-self: center; }
+  .toggle.on { background: #1a6cf6; }
+  .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: white; border-radius: 50%; transition: 0.2s; }
+  .toggle.on::after { left: 18px; }
+  .sample-msg { background: #f3f4f6; border-left: 4px solid #1a6cf6; padding: 14px 16px; margin: 10px 0; border-radius: 0 8px 8px 0; font-family: monospace; font-size: 13px; color: #374151; line-height: 1.6; }
+  .important-box { background: #eff6ff; border-left: 4px solid #1a6cf6; padding: 16px 20px; margin: 20px 0; font-size: 14px; color: #1e3a8a; line-height: 1.7; }
+  a { color: #1a6cf6; }
+  .footer { text-align: center; padding: 40px 24px; font-size: 13px; color: #9ca3af; border-top: 1px solid #e5e7eb; margin-top: 60px; }
+  .cta-block { background: linear-gradient(135deg, #1a6cf6 0%, #0f2744 100%); border-radius: 12px; padding: 28px; color: white; margin: 24px 0; }
+  .cta-block h3 { color: white; font-size: 18px; margin-bottom: 8px; }
+  .cta-block p { color: rgba(255,255,255,0.92); margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="logo">SB</div>
+    <div class="brand">Snapback Health</div>
+  </div>
+</div>
+
+<div class="container">
+  <h1>SMS Reminder Program</h1>
+  <p class="subtitle">Snapback Health Recovery Reminders is an opt-in SMS program that sends post-surgical and post-procedural patients automated reminders for medication, exercises, wound care, daily check-ins, and appointments. This page describes the program, how patients opt in, and how they can opt out.</p>
+
+  <h2>How Patients Opt In to SMS</h2>
+  <p>Patients can only enroll in Snapback Health after being invited by their healthcare provider (clinic). When a patient is referred to Snapback Health, the opt-in process works as follows:</p>
+
+  <div class="step">
+    <span class="step-num">1</span><strong>Patient receives clinic code from their care team</strong>
+    <p style="margin-top:8px;">The clinic provides each patient with a short alphanumeric clinic code (for example: <code>OSI</code>, <code>FBJ</code>, or <code>CARDIAC</code>) during their pre-operative visit or via secure email.</p>
+  </div>
+
+  <div class="step">
+    <span class="step-num">2</span><strong>Patient creates account at app.snapbackhealth.com</strong>
+    <p style="margin-top:8px;">During account creation, the patient provides their name, email, password, and the clinic code provided by their care team. They review and check the consent box shown below before their account is created.</p>
+  </div>
+
+  <div class="opt-in-box">
+    <div class="label">Required consent during signup</div>
+    <div class="consent-checkbox">
+      <div class="check">✓</div>
+      <div class="text">I consent to use Snapback Health as a <strong>remote therapeutic monitoring tool</strong> prescribed by my care team. I understand my care team will review my data to support my recovery. I have read the <a href="https://snapbackhealth.com/privacy-policy">Privacy Policy</a> and <a href="https://snapbackhealth.com/terms">Terms of Service</a>.</div>
+    </div>
+    <p style="font-size:13px;color:#6b7280;margin:0;"><strong>Note:</strong> This checkbox is required to create an account. Patients cannot proceed without affirmatively checking this box. The consent is logged with timestamp in our database.</p>
+  </div>
+
+  <div class="step">
+    <span class="step-num">3</span><strong>Patient affirmatively enables SMS for specific reminders</strong>
+    <p style="margin-top:8px;">After account creation, the patient navigates to the <strong>Reminders</strong> page in the portal. <strong>SMS is disabled by default for all reminder types.</strong> The patient must affirmatively toggle SMS on for each reminder type they wish to receive via text message, and provide their mobile phone number.</p>
+  </div>
+
+  <div class="reminder-types">
+    <p style="font-size:13px;color:#6b7280;margin-bottom:8px;"><strong>Example of the Reminders settings page in the app:</strong></p>
+    <div class="reminder-type">
+      <div class="icon">💊</div>
+      <div class="info">
+        <div class="name">Medication reminders</div>
+        <div class="desc">SMS reminders to take prescribed medications on schedule</div>
+      </div>
+      <div class="toggle on"></div>
+    </div>
+    <div class="reminder-type">
+      <div class="icon">🏃</div>
+      <div class="info">
+        <div class="name">Exercise reminders</div>
+        <div class="desc">SMS reminders to complete prescribed physical therapy exercises</div>
+      </div>
+      <div class="toggle on"></div>
+    </div>
+    <div class="reminder-type">
+      <div class="icon">📸</div>
+      <div class="info">
+        <div class="name">Wound photo reminders</div>
+        <div class="desc">SMS reminders to take a wound or access site photo for your care team</div>
+      </div>
+      <div class="toggle"></div>
+    </div>
+    <div class="reminder-type">
+      <div class="icon">✓</div>
+      <div class="info">
+        <div class="name">Daily check-in reminders</div>
+        <div class="desc">SMS reminders to complete your daily recovery checklist</div>
+      </div>
+      <div class="toggle on"></div>
+    </div>
+    <div class="reminder-type">
+      <div class="icon">📅</div>
+      <div class="info">
+        <div class="name">Appointment reminders</div>
+        <div class="desc">SMS reminders for upcoming follow-up appointments</div>
+      </div>
+      <div class="toggle"></div>
+    </div>
+  </div>
+
+  <div class="important-box">
+    <strong>Patients control every reminder.</strong> Each reminder type has independent SMS and email toggles. Patients can enable SMS for some reminder types and not others. They can also customize the time of day each reminder is delivered. Patients can change these settings at any time.
+  </div>
+
+  <h2>Program Details</h2>
+  <ul>
+    <li><strong>Program name:</strong> Snapback Health Recovery Reminders</li>
+    <li><strong>Description:</strong> Automated medication reminders, exercise reminders, wound photo reminders, daily check-in reminders, and appointment reminders for post-surgical and post-procedural patients</li>
+    <li><strong>Message frequency:</strong> Varies based on patient settings — up to 6 messages per day</li>
+    <li><strong>Charges:</strong> <strong>Message and data rates may apply</strong></li>
+    <li><strong>Eligible patients:</strong> Patients invited by a participating healthcare clinic who have created a Snapback Health account and affirmatively enabled SMS reminders</li>
+  </ul>
+
+  <h2>Sample Messages</h2>
+  <p>All messages are transactional and care-related. Patients only receive messages for the reminder types they have explicitly enabled. Examples:</p>
+  <div class="sample-msg">Snapback Health: Time to take your medication — Acetaminophen 500mg. Mark complete in your portal: https://app.snapbackhealth.com Reply STOP to unsubscribe.</div>
+  <div class="sample-msg">Snapback Health: Daily check-in reminder. Please complete your recovery checklist and log your pain level today: https://app.snapbackhealth.com Reply STOP to unsubscribe.</div>
+  <div class="sample-msg">Snapback Health: Time for your wound photo. Take a clear picture of your incision site in the app for your care team to review: https://app.snapbackhealth.com Reply STOP to unsubscribe.</div>
+  <div class="sample-msg">Snapback Health: Exercise reminder. Complete today's physical therapy exercises to stay on track with your recovery: https://app.snapbackhealth.com Reply STOP to unsubscribe.</div>
+  <div class="sample-msg">Snapback Health: Appointment reminder. You have a follow-up visit tomorrow at 10:30 AM. View details in your portal: https://app.snapbackhealth.com Reply STOP to unsubscribe.</div>
+
+  <h2>How to Opt Out</h2>
+  <p>Patients can stop receiving SMS messages at any time using any of the following methods:</p>
+  <ul>
+    <li><strong>Reply STOP</strong> to any text message — opt-out is immediate</li>
+    <li><strong>Reply HELP</strong> to any message for support information</li>
+    <li>Sign in to the patient portal, go to the <strong>Reminders</strong> page, and toggle SMS off for any or all reminder types</li>
+    <li>Email <a href="mailto:hello@snapbackhealth.com">hello@snapbackhealth.com</a> to request removal from all SMS communications</li>
+  </ul>
+
+  <h2>Privacy and Data Handling</h2>
+  <p>Snapback Health is a HIPAA-compliant healthcare technology platform. We do not share patient mobile phone numbers or SMS opt-in data with any third parties or affiliates for marketing or promotional purposes under any circumstances. Mobile information is used solely for delivering the recovery reminders patients have explicitly opted in to receive.</p>
+  <p>Complete details of our data handling practices are in our <a href="https://snapbackhealth.com/privacy-policy">Privacy Policy</a> and <a href="https://snapbackhealth.com/terms">Terms of Service</a>.</p>
+
+  <h2>Contact Us</h2>
+  <p>If you have questions about our SMS reminder program or this opt-in process:</p>
+  <ul>
+    <li><strong>Email:</strong> <a href="mailto:hello@snapbackhealth.com">hello@snapbackhealth.com</a></li>
+    <li><strong>Website:</strong> <a href="https://snapbackhealth.com">snapbackhealth.com</a></li>
+    <li><strong>Mailing address:</strong> Snapback Health Technologies LLC, Flagstaff, Arizona, United States</li>
+  </ul>
+</div>
+
+<div class="footer">
+  © 2026 Snapback Health Technologies LLC · Flagstaff, Arizona · snapbackhealth.com
+</div>
+
+</body>
+</html>
