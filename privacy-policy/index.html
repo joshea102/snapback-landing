@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Privacy Policy — Snapback Health</title>
+<title>SMS Reminders — Snapback Health</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #111827; background: #f9fafb; }
@@ -13,16 +13,38 @@
   .brand { color: white; font-size: 18px; font-weight: 700; }
   .container { max-width: 760px; margin: 40px auto; padding: 0 24px 80px; }
   h1 { font-size: 28px; font-weight: 700; color: #111827; margin-bottom: 8px; }
-  .updated { font-size: 13px; color: #6b7280; margin-bottom: 40px; }
+  .subtitle { font-size: 15px; color: #6b7280; margin-bottom: 32px; line-height: 1.6; }
   h2 { font-size: 18px; font-weight: 700; color: #111827; margin: 32px 0 12px; }
+  h3 { font-size: 15px; font-weight: 700; color: #111827; margin: 18px 0 8px; }
   p { font-size: 15px; color: #374151; line-height: 1.7; margin-bottom: 12px; }
   ul { font-size: 15px; color: #374151; line-height: 1.7; margin: 8px 0 12px 24px; }
   ul li { margin-bottom: 6px; }
   strong { color: #111827; font-weight: 700; }
-  .highlight { background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 16px; margin: 20px 0; font-size: 14px; color: #92400e; line-height: 1.6; }
+  .opt-in-box { background: #ffffff; border: 2px solid #1a6cf6; border-radius: 12px; padding: 24px; margin: 20px 0; }
+  .opt-in-box .label { font-size: 11px; font-weight: 700; color: #1a6cf6; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+  .consent-checkbox { display: flex; gap: 12px; align-items: flex-start; padding: 16px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; margin-bottom: 16px; }
+  .consent-checkbox .check { width: 22px; height: 22px; border: 2px solid #1a6cf6; border-radius: 4px; flex-shrink: 0; background: #1a6cf6; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px; }
+  .consent-checkbox .text { font-size: 14px; color: #374151; line-height: 1.6; }
+  .step { background: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 18px; margin-bottom: 12px; }
+  .step-num { display: inline-flex; width: 24px; height: 24px; background: #1a6cf6; color: white; border-radius: 50%; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-right: 10px; }
+  .reminder-types { background: #f9fafb; border-radius: 10px; padding: 18px; margin: 16px 0; }
+  .reminder-type { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #e5e7eb; }
+  .reminder-type:last-child { border-bottom: none; }
+  .reminder-type .icon { font-size: 20px; flex-shrink: 0; }
+  .reminder-type .info { flex: 1; }
+  .reminder-type .name { font-size: 14px; font-weight: 600; color: #111827; }
+  .reminder-type .desc { font-size: 13px; color: #6b7280; }
+  .toggle { width: 36px; height: 20px; background: #d1d5db; border-radius: 10px; position: relative; flex-shrink: 0; align-self: center; }
+  .toggle.on { background: #1a6cf6; }
+  .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: white; border-radius: 50%; transition: 0.2s; }
+  .toggle.on::after { left: 18px; }
+  .sample-msg { background: #f3f4f6; border-left: 4px solid #1a6cf6; padding: 14px 16px; margin: 10px 0; border-radius: 0 8px 8px 0; font-family: monospace; font-size: 13px; color: #374151; line-height: 1.6; }
   .important-box { background: #eff6ff; border-left: 4px solid #1a6cf6; padding: 16px 20px; margin: 20px 0; font-size: 14px; color: #1e3a8a; line-height: 1.7; }
   a { color: #1a6cf6; }
   .footer { text-align: center; padding: 40px 24px; font-size: 13px; color: #9ca3af; border-top: 1px solid #e5e7eb; margin-top: 60px; }
+  .cta-block { background: linear-gradient(135deg, #1a6cf6 0%, #0f2744 100%); border-radius: 12px; padding: 28px; color: white; margin: 24px 0; }
+  .cta-block h3 { color: white; font-size: 18px; margin-bottom: 8px; }
+  .cta-block p { color: rgba(255,255,255,0.92); margin-bottom: 0; }
 </style>
 </head>
 <body>
@@ -35,118 +57,121 @@
 </div>
 
 <div class="container">
-  <h1>Privacy Policy</h1>
-  <div class="updated">Last updated: May 17, 2026 · Effective date: May 17, 2026</div>
+  <h1>SMS Reminder Program</h1>
+  <p class="subtitle">Snapback Health Recovery Reminders is an opt-in SMS program that sends post-surgical and post-procedural patients automated reminders for medication, exercises, wound care, daily check-ins, and appointments. This page describes the program, how patients opt in, and how they can opt out.</p>
 
-  <h2>1. Introduction</h2>
-  <p>Snapback Health Technologies LLC ("Snapback Health," "we," "us," or "our") is committed to protecting the privacy and security of your personal and health information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our patient recovery portal at snapbackhealth.com and app.snapbackhealth.com (the "Service").</p>
-  <p>We act as a <strong>Business Associate</strong> under the Health Insurance Portability and Accountability Act of 1996 ("HIPAA") to your healthcare provider, and we are committed to the protection of Protected Health Information ("PHI") in accordance with HIPAA, the Health Information Technology for Economic and Clinical Health Act ("HITECH"), and applicable state privacy laws.</p>
+  <h2>How Patients Opt In to SMS</h2>
+  <p>Patients can only enroll in Snapback Health after being invited by their healthcare provider (clinic). When a patient is referred to Snapback Health, the opt-in process works as follows:</p>
 
-  <h2>2. Information We Collect</h2>
-  <p>We collect the following categories of information when you use our Service:</p>
-  <ul>
-    <li><strong>Account information:</strong> First and last name, email address, encrypted password, clinic code</li>
-    <li><strong>Protected Health Information (PHI):</strong> Procedure type, surgery date, recovery day, pain scores, temperature, blood pressure, heart rate, wound and access site photographs, medication lists, exercise activity logs, daily checklist completion, AI nurse chat history, and provider communications</li>
-    <li><strong>Contact information:</strong> Mobile phone number (only if you opt in to SMS reminders)</li>
-    <li><strong>Patient-Reported Outcome (PRO) survey responses:</strong> KOOS Jr., HOOS Jr., QuickDASH, PROMIS, and other clinically validated outcome assessments</li>
-    <li><strong>Consent records:</strong> Timestamps and details of all consents you provide, including remote therapeutic monitoring consent and SMS opt-in</li>
-    <li><strong>Usage data:</strong> Page views, feature usage, device type, browser type, IP address, and access timestamps, used for security, audit, and quality improvement purposes</li>
-  </ul>
-
-  <h2>3. How We Use Your Information</h2>
-  <p>We use your information solely for the following purposes:</p>
-  <ul>
-    <li>Delivering your personalized recovery portal, exercise program, education content, and daily checklists</li>
-    <li>Sending medication reminders, exercise reminders, wound photo reminders, appointment reminders, and recovery check-in notifications via email and SMS — <strong>only if you have explicitly opted in</strong></li>
-    <li>Sharing your recovery progress, vital signs, photographs, and outcome survey results with your authorized healthcare provider through our HIPAA-compliant provider portal</li>
-    <li>Operating, maintaining, securing, and improving the Service</li>
-    <li>Detecting, preventing, investigating, and responding to fraud, security incidents, or potential threats</li>
-    <li>Analyzing de-identified and aggregated data to improve patient outcomes and service quality</li>
-    <li>Complying with applicable legal, regulatory, and Medicare reporting requirements, including CMS PRO reporting for applicable procedures under the Comprehensive Care for Joint Replacement (CJR) and Transforming Episode Accountability Model (TEAM) programs</li>
-  </ul>
-  <p><strong>We do not use your information for advertising, marketing to third parties, or sale to data brokers.</strong></p>
-
-  <h2>4. How We Share Your Information</h2>
-  <p><strong>We do not sell your personal information or health data to any third party under any circumstance.</strong> We share your information only in the following limited circumstances:</p>
-  <ul>
-    <li><strong>Your healthcare provider:</strong> Your clinic, surgeon, nurses, and authorized care team members can view your recovery data, vital sign readings, photographs, and survey results through our HIPAA-compliant provider portal. Provider access is strictly limited to patients at their own clinic through database-level Row Level Security controls.</li>
-    <li><strong>Business Associates (service providers):</strong> We share data with vendors who help us operate our platform, each under a signed Business Associate Agreement (BAA) as required by HIPAA. These currently include: Supabase (database and authentication), Vercel (web hosting), Resend (transactional email delivery), Twilio (SMS delivery), Anthropic (AI nurse chat — with PHI sanitization applied), and Cloudflare (security and DDoS protection).</li>
-    <li><strong>Legal compliance:</strong> We may disclose information when required by law, court order, subpoena, or regulatory request, or when necessary to investigate suspected fraud, protect the rights, safety, or property of our users or others, or comply with HIPAA breach notification requirements.</li>
-    <li><strong>Business transfers:</strong> In the event of a merger, acquisition, or sale of all or part of our assets, your information may be transferred to the successor entity, subject to the same privacy commitments described in this Policy.</li>
-  </ul>
-  <div class="important-box">
-    <strong>SMS Data Restriction:</strong> No mobile information, including phone numbers, opt-in data, or SMS message content, will be shared with any third parties or affiliates for marketing or promotional purposes under any circumstances. Mobile information is used solely for delivery of recovery reminders you have explicitly opted in to receive.
+  <div class="step">
+    <span class="step-num">1</span><strong>Patient receives clinic code from their care team</strong>
+    <p style="margin-top:8px;">The clinic provides each patient with a short alphanumeric clinic code (for example: <code>OSI</code>, <code>FBJ</code>, or <code>CARDIAC</code>) during their pre-operative visit or via secure email.</p>
   </div>
 
-  <h2>5. SMS / Text Message Reminders</h2>
-  <p>If you choose to receive SMS reminders, you explicitly consent to receive automated text messages from Snapback Health at the mobile number you provide.</p>
+  <div class="step">
+    <span class="step-num">2</span><strong>Patient creates account at app.snapbackhealth.com</strong>
+    <p style="margin-top:8px;">During account creation, the patient provides their name, email, password, and the clinic code provided by their care team. They review and check the consent box shown below before their account is created.</p>
+  </div>
+
+  <div class="opt-in-box">
+    <div class="label">Required consent during signup</div>
+    <div class="consent-checkbox">
+      <div class="check">✓</div>
+      <div class="text">I consent to use Snapback Health as a <strong>remote therapeutic monitoring tool</strong> prescribed by my care team. I understand my care team will review my data to support my recovery. I have read the <a href="https://snapbackhealth.com/privacy-policy">Privacy Policy</a> and <a href="https://snapbackhealth.com/terms">Terms of Service</a>.</div>
+    </div>
+    <p style="font-size:13px;color:#6b7280;margin:0;"><strong>Note:</strong> This checkbox is required to create an account. Patients cannot proceed without affirmatively checking this box. The consent is logged with timestamp in our database.</p>
+  </div>
+
+  <div class="step">
+    <span class="step-num">3</span><strong>Patient affirmatively enables SMS for specific reminders</strong>
+    <p style="margin-top:8px;">After account creation, the patient navigates to the <strong>Reminders</strong> page in the portal. <strong>SMS is disabled by default for all reminder types.</strong> The patient must affirmatively toggle SMS on for each reminder type they wish to receive via text message, and provide their mobile phone number.</p>
+  </div>
+
+  <div class="reminder-types">
+    <p style="font-size:13px;color:#6b7280;margin-bottom:8px;"><strong>Example of the Reminders settings page in the app:</strong></p>
+    <div class="reminder-type">
+      <div class="icon">💊</div>
+      <div class="info">
+        <div class="name">Medication reminders</div>
+        <div class="desc">SMS reminders to take prescribed medications on schedule</div>
+      </div>
+      <div class="toggle on"></div>
+    </div>
+    <div class="reminder-type">
+      <div class="icon">🏃</div>
+      <div class="info">
+        <div class="name">Exercise reminders</div>
+        <div class="desc">SMS reminders to complete prescribed physical therapy exercises</div>
+      </div>
+      <div class="toggle on"></div>
+    </div>
+    <div class="reminder-type">
+      <div class="icon">📸</div>
+      <div class="info">
+        <div class="name">Wound photo reminders</div>
+        <div class="desc">SMS reminders to take a wound or access site photo for your care team</div>
+      </div>
+      <div class="toggle"></div>
+    </div>
+    <div class="reminder-type">
+      <div class="icon">✓</div>
+      <div class="info">
+        <div class="name">Daily check-in reminders</div>
+        <div class="desc">SMS reminders to complete your daily recovery checklist</div>
+      </div>
+      <div class="toggle on"></div>
+    </div>
+    <div class="reminder-type">
+      <div class="icon">📅</div>
+      <div class="info">
+        <div class="name">Appointment reminders</div>
+        <div class="desc">SMS reminders for upcoming follow-up appointments</div>
+      </div>
+      <div class="toggle"></div>
+    </div>
+  </div>
+
+  <div class="important-box">
+    <strong>Patients control every reminder.</strong> Each reminder type has independent SMS and email toggles. Patients can enable SMS for some reminder types and not others. They can also customize the time of day each reminder is delivered. Patients can change these settings at any time.
+  </div>
+
+  <h2>Program Details</h2>
   <ul>
     <li><strong>Program name:</strong> Snapback Health Recovery Reminders</li>
-    <li><strong>Description:</strong> Automated medication reminders, exercise reminders, wound photo reminders, daily check-in reminders, and appointment reminders</li>
-    <li><strong>Message frequency:</strong> Varies based on your reminder settings — up to 6 messages per day</li>
-    <li><strong>Charges:</strong> <strong>Message and data rates may apply</strong> based on your mobile carrier plan</li>
-    <li><strong>Opt-out:</strong> Reply <strong>STOP</strong> to any text message at any time, or turn off SMS reminders in your account settings under the Reminders tab</li>
-    <li><strong>Help:</strong> Reply <strong>HELP</strong> to any message or email hello@snapbackhealth.com</li>
+    <li><strong>Description:</strong> Automated medication reminders, exercise reminders, wound photo reminders, daily check-in reminders, and appointment reminders for post-surgical and post-procedural patients</li>
+    <li><strong>Message frequency:</strong> Varies based on patient settings — up to 6 messages per day</li>
+    <li><strong>Charges:</strong> <strong>Message and data rates may apply</strong></li>
+    <li><strong>Eligible patients:</strong> Patients invited by a participating healthcare clinic who have created a Snapback Health account and affirmatively enabled SMS reminders</li>
   </ul>
-  <p>Your SMS opt-in consent is logged with timestamp in our database for audit purposes. SMS is disabled by default for all reminder types — you must affirmatively enable SMS for each reminder type you wish to receive via text message.</p>
 
-  <h2>6. Data Security</h2>
-  <p>We implement comprehensive administrative, physical, and technical safeguards to protect your health information in accordance with HIPAA Security Rule requirements:</p>
+  <h2>Sample Messages</h2>
+  <p>All messages are transactional and care-related. Patients only receive messages for the reminder types they have explicitly enabled. Examples:</p>
+  <div class="sample-msg">Snapback Health: Time to take your medication — Acetaminophen 500mg. Mark complete in your portal: https://app.snapbackhealth.com Reply STOP to unsubscribe.</div>
+  <div class="sample-msg">Snapback Health: Daily check-in reminder. Please complete your recovery checklist and log your pain level today: https://app.snapbackhealth.com Reply STOP to unsubscribe.</div>
+  <div class="sample-msg">Snapback Health: Time for your wound photo. Take a clear picture of your incision site in the app for your care team to review: https://app.snapbackhealth.com Reply STOP to unsubscribe.</div>
+  <div class="sample-msg">Snapback Health: Exercise reminder. Complete today's physical therapy exercises to stay on track with your recovery: https://app.snapbackhealth.com Reply STOP to unsubscribe.</div>
+  <div class="sample-msg">Snapback Health: Appointment reminder. You have a follow-up visit tomorrow at 10:30 AM. View details in your portal: https://app.snapbackhealth.com Reply STOP to unsubscribe.</div>
+
+  <h2>How to Opt Out</h2>
+  <p>Patients can stop receiving SMS messages at any time using any of the following methods:</p>
   <ul>
-    <li><strong>Encryption in transit:</strong> All data transmitted between your device and our servers is encrypted using TLS 1.2 or higher (HTTPS)</li>
-    <li><strong>Encryption at rest:</strong> All data stored in our database is encrypted at rest using AES-256 encryption</li>
-    <li><strong>Access controls:</strong> Row Level Security policies enforce that each patient can only access their own records, and each healthcare provider can only access patients at their own clinic</li>
-    <li><strong>Authentication:</strong> All accounts require a unique email and password meeting minimum complexity requirements</li>
-    <li><strong>Audit logging:</strong> All access to patient health information is logged with user identity, timestamp, action, and resource accessed, for security monitoring and regulatory compliance</li>
-    <li><strong>Vendor management:</strong> Business Associate Agreements are executed with all third-party vendors who handle PHI</li>
-    <li><strong>Personnel:</strong> Personnel with access to PHI are subject to confidentiality obligations and security training</li>
-    <li><strong>Breach response:</strong> We maintain a documented incident response procedure and will notify affected individuals and the U.S. Department of Health and Human Services within HIPAA-mandated timeframes in the event of a breach</li>
-    <li><strong>Regular reviews:</strong> Security policies, access controls, and vendor BAAs are reviewed at least annually</li>
+    <li><strong>Reply STOP</strong> to any text message — opt-out is immediate</li>
+    <li><strong>Reply HELP</strong> to any message for support information</li>
+    <li>Sign in to the patient portal, go to the <strong>Reminders</strong> page, and toggle SMS off for any or all reminder types</li>
+    <li>Email <a href="mailto:hello@snapbackhealth.com">hello@snapbackhealth.com</a> to request removal from all SMS communications</li>
   </ul>
-  <p>While we implement industry-standard safeguards, no method of electronic transmission or storage is one hundred percent secure. We cannot guarantee absolute security and encourage you to use strong, unique passwords and notify us immediately of any suspected unauthorized access.</p>
 
-  <h2>7. Data Retention</h2>
-  <p>We retain your health information for as long as your account is active or as required by applicable law. Specifically:</p>
+  <h2>Privacy and Data Handling</h2>
+  <p>Snapback Health is a HIPAA-compliant healthcare technology platform. We do not share patient mobile phone numbers or SMS opt-in data with any third parties or affiliates for marketing or promotional purposes under any circumstances. Mobile information is used solely for delivering the recovery reminders patients have explicitly opted in to receive.</p>
+  <p>Complete details of our data handling practices are in our <a href="https://snapbackhealth.com/privacy-policy">Privacy Policy</a> and <a href="https://snapbackhealth.com/terms">Terms of Service</a>.</p>
+
+  <h2>Contact Us</h2>
+  <p>If you have questions about our SMS reminder program or this opt-in process:</p>
   <ul>
-    <li>Active patient records are retained for the duration of the patient-provider relationship and ongoing care</li>
-    <li>Following account termination, records may be retained for a minimum of <strong>six (6) years</strong> as required by HIPAA, and longer if required by applicable state law</li>
-    <li>Consent records and audit logs are retained for a minimum of six (6) years for compliance and regulatory purposes</li>
-    <li>De-identified, aggregated data may be retained indefinitely for research and service improvement purposes</li>
-  </ul>
-  <p>You may request deletion of your account and personal identifiers by contacting us at hello@snapbackhealth.com, subject to the legal retention requirements above.</p>
-
-  <h2>8. Your Rights Under HIPAA and Applicable Law</h2>
-  <p>You have the following rights regarding your health information:</p>
-  <ul>
-    <li><strong>Right to access:</strong> Receive a copy of your health information in electronic or paper format</li>
-    <li><strong>Right to amend:</strong> Request corrections to your health information that you believe is inaccurate</li>
-    <li><strong>Right to restrict:</strong> Request restrictions on how your information is used or shared</li>
-    <li><strong>Right to accounting of disclosures:</strong> Receive a list of disclosures of your health information made by us in the prior six years</li>
-    <li><strong>Right to confidential communications:</strong> Request that we communicate with you in a specific way or at a specific location</li>
-    <li><strong>Right to file a complaint:</strong> File a complaint with us or with the U.S. Department of Health and Human Services Office for Civil Rights if you believe your privacy rights have been violated. You will not be retaliated against for filing a complaint.</li>
-  </ul>
-  <p>To exercise any of these rights, contact us at hello@snapbackhealth.com. We will respond within thirty days as required by HIPAA.</p>
-
-  <h2>9. Minor Patients</h2>
-  <p>We recognize that patients of all ages may require post-surgical care. Minor patients (under 18) may use our platform only when their healthcare provider has invited them and a parent or legal guardian has provided consent on their behalf. For patients under 13, a parent or guardian must create and manage the account and provide consent under the Children's Online Privacy Protection Act. For patients aged 13 to 17, a parent or guardian must provide consent before the patient uses the Service. Healthcare providers are responsible for obtaining appropriate parental or guardian consent before inviting minor patients to the platform.</p>
-
-  <h2>10. International Users</h2>
-  <p>The Service is intended for use by patients of healthcare providers located in the United States. We do not market the Service to individuals outside the United States. If you access the Service from outside the United States, you do so at your own risk and acknowledge that your information will be processed in the United States in accordance with U.S. law.</p>
-
-  <h2>11. Changes to This Privacy Policy</h2>
-  <p>We may update this Privacy Policy from time to time to reflect changes in our practices, applicable law, or industry standards. We will notify you of material changes by email to your registered address or through a prominent notice in the patient portal at least thirty days before changes take effect. Your continued use of the Service after the effective date of changes constitutes your acceptance of the updated Policy.</p>
-
-  <h2>12. California Residents — Additional Rights</h2>
-  <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act and California Confidentiality of Medical Information Act. These include the right to know what categories of personal information we collect, the right to delete personal information (subject to HIPAA retention requirements), and the right to opt out of the sale or sharing of personal information. <strong>We do not sell or share personal information for cross-context behavioral advertising.</strong> To exercise these rights, contact us at hello@snapbackhealth.com.</p>
-
-  <h2>13. Contact Us</h2>
-  <p>If you have questions about this Privacy Policy, our privacy practices, or how we handle your health information, or to exercise any of your rights, please contact our Privacy Officer:</p>
-  <ul>
-    <li><strong>Email:</strong> hello@snapbackhealth.com</li>
-    <li><strong>Website:</strong> snapbackhealth.com</li>
+    <li><strong>Email:</strong> <a href="mailto:hello@snapbackhealth.com">hello@snapbackhealth.com</a></li>
+    <li><strong>Website:</strong> <a href="https://snapbackhealth.com">snapbackhealth.com</a></li>
     <li><strong>Mailing address:</strong> Snapback Health Technologies LLC, Flagstaff, Arizona, United States</li>
   </ul>
-  <p>You may also file a HIPAA complaint with the U.S. Department of Health and Human Services Office for Civil Rights at <a href="https://www.hhs.gov/hipaa/filing-a-complaint/index.html" target="_blank">https://www.hhs.gov/hipaa/filing-a-complaint/index.html</a>.</p>
 </div>
 
 <div class="footer">
